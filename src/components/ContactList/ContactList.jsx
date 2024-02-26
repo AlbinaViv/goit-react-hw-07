@@ -1,8 +1,7 @@
 import { useSelector } from "react-redux";
 import { Contact } from "../Contact/Contact";
 import css from "./ContactList.module.css";
-import { getContacts } from "../../redux/contacts/contacts.selectors";
-import { getFilter } from "../../redux/filters/filter.selectors";
+import { getContacts, getFilter } from "../../redux/selectors";
 import { deleteContactAction } from "../../redux/contacts/contacts.slice";
 
 export const ContactList = () => {
@@ -28,11 +27,11 @@ export const ContactList = () => {
 
   return (
     <ul className={css.contactList}>
-      {getFilterContacts.map(({ id, name, number }) => (
+      {getFilterContacts.map(({ id, name, phone }) => (
         <Contact
           key={id}
           name={name}
-          number={number}
+          number={phone}
           id={id}
           onDelete={deleteUsers}
         />

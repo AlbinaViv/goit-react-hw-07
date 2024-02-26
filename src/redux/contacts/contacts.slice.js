@@ -6,6 +6,8 @@ const contactsSlice = createSlice({
   name: "contacts",
   initialState: {
     items: [],
+    isLoading: false,
+    error: null,
   },
   reducers: {
     addContactAction: (state, { payload }) => {
@@ -14,10 +16,28 @@ const contactsSlice = createSlice({
     deleteContactAction: (state, { payload }) => {
       state.items = state.items.filter((contact) => contact.id !== payload);
     },
+    fetchingInProgress(state) {
+      state.isLoading = true;
+    },
+    fetchingSuccess(state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.items = action.payload;
+    },
+    fetchingError(state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 
-export const { addContactAction, deleteContactAction } = contactsSlice.actions;
+export const {
+  fetchingInProgress,
+  fetchingSuccess,
+  fetchingError,
+  addContactAction,
+  deleteContactAction,
+} = contactsSlice.actions;
 
 const persistConfig = {
   key: "contacts",
