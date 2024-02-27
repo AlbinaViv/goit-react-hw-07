@@ -1,7 +1,7 @@
 import css from "./SearchBox.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { filtersContactAction } from "../../redux/filters/filters.slice";
-import { getFilter } from "../../redux/selectors";
+import { selectFilter } from "../../redux/selectors";
 
 export const SearchBox = () => {
   const dispatch = useDispatch();
@@ -9,7 +9,7 @@ export const SearchBox = () => {
   const handleFilterChange = (e) =>
     dispatch(filtersContactAction(e.target.value.trim().toLowerCase()));
 
-  const value = useSelector(getFilter);
+  const value = useSelector(selectFilter);
 
   return (
     <div className={css.wrap}>
