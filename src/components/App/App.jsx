@@ -5,6 +5,7 @@ import { SearchBox } from "../SearchBox/SearchBox";
 import { selectError, selectIsLoading } from "../../redux/selectors";
 import { useEffect } from "react";
 import { fetchContacts } from "../../redux/operations";
+import css from "./App.module.css";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ export const App = () => {
 
   return (
     <>
-      <h1>Phonebook</h1>
+      <h1 className={css.title}>Phonebook</h1>
       <ContactForm />
       <SearchBox />
       {/* {isLoading && <p>Loading contacts...</p>}
